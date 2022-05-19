@@ -24,33 +24,44 @@ class _ReadQrCodePageState extends State<ReadQrCodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: <Widget>[
+        children: [
           GestureDetector(
             onTap: () => {Navigator.pop(context)},
             child: backWidget(),
           ),
-          const Text(
-            "将图片复制到剪贴板，点击按钮进行解析",
-            style: TextStyle(fontSize: 14, color: Colors.black),
-          ),
-          Padding(
-              padding: const EdgeInsets.all(8),
-              child: MaterialButton(
-                height: 40,
-                color: Colors.blue,
-                child: const Text(
-                  "解析",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+          Expanded(
+            child: SingleChildScrollView(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    const Text(
+                      "将图片复制到剪贴板，点击按钮进行解析",
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: MaterialButton(
+                          height: 40,
+                          color: Colors.blue,
+                          child: const Text(
+                            "解析",
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                          onPressed: () {
+                            readImages();
+                          },
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: SelectableText(_imageContent),
+                    ),
+                    _buildQrCodeImage(),
+                  ],
                 ),
-                onPressed: () {
-                  readImages();
-                },
-              )),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text(_imageContent),
+              ),
+            ),
           ),
-          _buildQrCodeImage(),
         ],
       ),
     );
@@ -60,7 +71,11 @@ class _ReadQrCodePageState extends State<ReadQrCodePage> {
     if (_imageBytes != null) {
       return Padding(
         padding: const EdgeInsets.only(top: 16),
-        child: Image.memory(_imageBytes!),
+        child: SizedBox(
+          width: 300,
+          height: 300,
+          child: Image.memory(_imageBytes!),
+        ),
       );
     } else {
       return const Padding(

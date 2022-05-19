@@ -17,28 +17,34 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          buildCardItem(context, "Android 资源工具", "复制 Android 多 dpi 资源",
-              Icons.copy_outlined, () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const AndroidResPage()));
-          }),
-          buildCardItem(context, "二维码工具", "解析二维码内容", Icons.qr_code, () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ReadQrCodePage()));
-          }),
-          buildCardItem(context, "二维码工具", "生成二维码内容", Icons.qr_code, () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const WriteQrCodePage()));
-          }),
-        ],
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildCardItem(context, "Android 资源工具", "复制 Android 多 dpi 资源",
+                  Icons.copy_outlined, () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AndroidResPage()));
+              }),
+              buildCardItem(context, "二维码工具", "解析二维码内容", Icons.qr_code, () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReadQrCodePage()));
+              }),
+              buildCardItem(context, "二维码工具", "生成二维码内容", Icons.qr_code, () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WriteQrCodePage()));
+              }),
+            ],
+          ),
+        ),
       ),
     );
   }
