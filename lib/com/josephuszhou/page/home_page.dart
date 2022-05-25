@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:haha_tools/com/josephuszhou/page/android_res_page.dart';
 import 'package:haha_tools/com/josephuszhou/page/read_qrcode_page.dart';
+import 'package:haha_tools/com/josephuszhou/util/sys_util.dart';
 
+import '../util/font_util.dart';
 import 'generate_qrcode_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,19 +31,19 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const AndroidResPage()));
-              }),
+              }, supportAndroid: false, supportIOS: false, supportWeb: false),
               buildCardItem(context, "二维码工具", "解析二维码内容", Icons.qr_code, () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const ReadQrCodePage()));
-              }),
+              }, supportAndroid: false, supportIOS: false, supportWeb: false),
               buildCardItem(context, "二维码工具", "生成二维码内容", Icons.qr_code, () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const WriteQrCodePage()));
-              }),
+              }, supportAndroid: false, supportIOS: false, supportWeb: false),
             ],
           ),
         ),
@@ -50,30 +52,106 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildCardItem(BuildContext context, String title, String subTitle,
-      IconData iconData, GestureTapCallback onTap) {
+      IconData iconData, GestureTapCallback onTap,
+      {bool supportWindows = true,
+      bool supportMac = true,
+      bool supportLinux = true,
+      bool supportAndroid = true,
+      bool supportIOS = true,
+      bool supportWeb = true}) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 16),
       child: GestureDetector(
-        onTap: onTap,
+        onTap: () {
+          if (isWindows() && !supportWindows) {
+            return;
+          }
+          if (isMacOS() && !supportMac) {
+            return;
+          }
+          if (isLinux() && !supportLinux) {
+            return;
+          }
+          if (isAndroid() && !supportAndroid) {
+            return;
+          }
+          if (isIOS() && !supportIOS) {
+            return;
+          }
+          if (isWeb() && !supportWeb) {
+            return;
+          }
+          onTap;
+        },
         child: SizedBox(
           width: 300,
-          height: 100,
           child: Card(
             elevation: 4,
             child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: ListTile(
-                  title: Text(title),
-                  subtitle: Text(subTitle),
-                  leading: Icon(iconData),
-                ),
+              padding:
+                  const EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 8),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: ListTile(
+                      title: Text(title),
+                      subtitle: Text(subTitle),
+                      leading: Icon(iconData),
+                    ),
+                  ),
+                  const SizedBox(height: 8,),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: buildPlatformRow(supportWindows, supportMac,
+                          supportLinux, supportAndroid, supportIOS, supportWeb),
+                    ),
+                  )
+                ],
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  List<Widget> buildPlatformRow(
+      bool supportWindows,
+      bool supportMac,
+      bool supportLinux,
+      bool supportAndroid,
+      bool supportIOS,
+      bool supportWeb) {
+    const double size = 16;
+    const Widget marginWidget = SizedBox(width: 8);
+    List<Widget> widgets = [];
+    if (supportWindows) {
+      widgets.add(const Icon(FontAwesome.windows, size: size));
+      widgets.add(marginWidget);
+    }
+    if (supportMac) {
+      widgets.add(const Icon(FontAwesome.desktop, size: size));
+      widgets.add(marginWidget);
+    }
+    if (supportLinux) {
+      widgets.add(const Icon(FontAwesome.linux, size: size));
+      widgets.add(marginWidget);
+    }
+    if (supportAndroid) {
+      widgets.add(const Icon(FontAwesome.android, size: size));
+      widgets.add(marginWidget);
+    }
+    if (supportIOS) {
+      widgets.add(const Icon(FontAwesome.apple, size: size));
+      widgets.add(marginWidget);
+    }
+    if (supportWeb) {
+      widgets.add(const Icon(FontAwesome.chrome, size: size));
+      widgets.add(marginWidget);
+    }
+    return widgets.sublist(0, widgets.length - 1);
   }
 }
