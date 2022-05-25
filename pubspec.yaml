@@ -41,6 +41,10 @@ dependencies:
 
   buffer_image: ^0.3.7
 
+  dart_des: ^1.0.2
+
+  convert: ^3.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
