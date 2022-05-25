@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:haha_tools/com/josephuszhou/page/android_res_page.dart';
 import 'package:haha_tools/com/josephuszhou/page/read_qrcode_page.dart';
 import 'package:haha_tools/com/josephuszhou/util/sys_util.dart';
+import 'package:oktoast/oktoast.dart';
 
 import '../util/font_util.dart';
 import 'generate_qrcode_page.dart';
@@ -63,22 +65,28 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.only(left: 16, top: 16),
       child: GestureDetector(
         onTap: () {
+          if (kIsWeb && !supportWeb) {
+            showToast("Not support Web!");
+            return;
+          }
           if (isWindows() && !supportWindows) {
+            showToast("No support Windows!");
             return;
           }
           if (isMacOS() && !supportMac) {
+            showToast("No support MacOS!");
             return;
           }
           if (isLinux() && !supportLinux) {
+            showToast("No support Linux!");
             return;
           }
           if (isAndroid() && !supportAndroid) {
+            showToast("No support Android!");
             return;
           }
           if (isIOS() && !supportIOS) {
-            return;
-          }
-          if (isWeb() && !supportWeb) {
+            showToast("No support iOS!");
             return;
           }
           onTap;

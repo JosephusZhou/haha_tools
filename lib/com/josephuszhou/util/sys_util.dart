@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 extension Target on Object {
+
   bool isAndroid() {
     return Platform.isAndroid;
   }
@@ -22,7 +22,4 @@ extension Target on Object {
     return Platform.isMacOS;
   }
 
-  bool isWeb() {
-    return kIsWeb;
-  }
 }
