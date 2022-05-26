@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:haha_tools/com/josephuszhou/page/android_res_page.dart';
-import 'package:haha_tools/com/josephuszhou/page/read_qrcode_page.dart';
-import 'package:haha_tools/com/josephuszhou/util/sys_util.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '../util/font_util.dart';
+import '../util/sys_util.dart';
+import 'android_res_page.dart';
 import 'generate_qrcode_page.dart';
+import 'read_qrcode_page.dart';
+import 'triple_des_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -34,18 +35,36 @@ class _HomePageState extends State<HomePage> {
                     MaterialPageRoute(
                         builder: (context) => const AndroidResPage()));
               }, supportAndroid: false, supportIOS: false, supportWeb: false),
+              buildCardItem(
+                context,
+                "3DES 加解密工具",
+                "3DES 便捷加解密",
+                Icons.enhanced_encryption,
+                () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TripleDesPage()));
+                },
+              ),
               buildCardItem(context, "二维码工具", "解析二维码内容", Icons.qr_code, () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const ReadQrCodePage()));
               }, supportAndroid: false, supportIOS: false, supportWeb: false),
-              buildCardItem(context, "二维码工具", "生成二维码内容", Icons.qr_code, () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const WriteQrCodePage()));
-              },),
+              buildCardItem(
+                context,
+                "二维码工具",
+                "生成二维码内容",
+                Icons.qr_code,
+                () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WriteQrCodePage()));
+                },
+              ),
             ],
           ),
         ),
@@ -108,7 +127,9 @@ class _HomePageState extends State<HomePage> {
                       leading: Icon(iconData),
                     ),
                   ),
-                  const SizedBox(height: 8,),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Row(
