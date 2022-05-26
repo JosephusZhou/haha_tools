@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const WriteQrCodePage()));
-              }, supportAndroid: false, supportIOS: false, supportWeb: false),
+              },),
             ],
           ),
         ),
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
             showToast("No support iOS!");
             return;
           }
-          onTap;
+          onTap();
         },
         child: SizedBox(
           width: 300,
