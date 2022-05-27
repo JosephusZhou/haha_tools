@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:haha_tools/com/josephuszhou/util/config_util.dart';
 import 'package:oktoast/oktoast.dart';
 
-import 'page/home_page.dart';
+import 'com/josephuszhou/page/home_page.dart';
+import 'com/josephuszhou/util/config_util.dart';
 
 void main() {
   runApp(const App());
