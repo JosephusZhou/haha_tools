@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haha_tools/com/josephuszhou/util/config_util.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'page/home_page.dart';
@@ -12,6 +13,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppConfig().loadConfig();
     return OKToast(
         child: MaterialApp(
       title: 'Flutter Demo',
