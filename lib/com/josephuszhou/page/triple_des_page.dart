@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:haha_tools/com/josephuszhou/util/config_util.dart';
 import 'package:oktoast/oktoast.dart';
 
+import '../base/base_state.dart';
 import '../entity/config_entity.dart';
 import '../util/triple_des_util.dart' as triple_des;
 import '../widget/common_widget.dart';
@@ -13,14 +14,15 @@ class TripleDesPage extends StatefulWidget {
   State<TripleDesPage> createState() => _TripleDesPageState();
 }
 
-class _TripleDesPageState extends State<TripleDesPage> {
+class _TripleDesPageState extends BaseState<TripleDesPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _keyController = TextEditingController();
   final TextEditingController _ivController = TextEditingController();
   final TextEditingController _encryptController = TextEditingController();
   final TextEditingController _decryptController = TextEditingController();
 
-  final List<TripleDesConfigEntity> _configList = AppConfig().readTripleDesConfig();
+  final List<TripleDesConfigEntity> _configList =
+      AppConfig().readTripleDesConfig();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class _TripleDesPageState extends State<TripleDesPage> {
         children: [
           GestureDetector(
             onTap: () => {Navigator.pop(context)},
-            child: backWidget(),
+            child: backWidget(context),
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -45,11 +47,11 @@ class _TripleDesPageState extends State<TripleDesPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("快捷选择已保存的加密参数："),
+                      Text(s.quickSelectEnParams),
                       divMargin,
                       buildSaved3DesConfigWidget(),
                       divMargin,
-                      const Text("保存加密参数的名称："),
+                      Text(s.savedEnParamsName),
                       divMargin,
                       Row(
                         children: [
@@ -58,9 +60,9 @@ class _TripleDesPageState extends State<TripleDesPage> {
                               controller: _nameController,
                               maxLines: 1,
                               keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                  hintText: "如果需要保存加密参数，请输入名称",
-                                  border: OutlineInputBorder(
+                              decoration: InputDecoration(
+                                  hintText: s.ifNeedPlzInputName,
+                                  border: const OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.grey))),
                             ),
@@ -70,46 +72,46 @@ class _TripleDesPageState extends State<TripleDesPage> {
                             height: 50,
                             color: Colors.blue,
                             onPressed: saveKeyIv,
-                            child: const Text(
-                              "保存",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
+                            child: Text(
+                              s.save,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 16),
                             ),
                           ),
                         ],
                       ),
                       divMargin,
-                      const Text("加密 Key："),
+                      Text(s.enKey),
                       divMargin,
                       TextField(
                         controller: _keyController,
                         maxLines: 1,
                         keyboardType: TextInputType.text,
-                        decoration: const InputDecoration(
-                            hintText: "请输入内容",
-                            border: OutlineInputBorder(
+                        decoration: InputDecoration(
+                            hintText: s.plzInputContent,
+                            border: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey))),
                       ),
                       divMargin,
-                      const Text("加密 Iv："),
+                      Text(s.enIv),
                       TextField(
                         controller: _ivController,
                         maxLines: 1,
                         keyboardType: TextInputType.text,
-                        decoration: const InputDecoration(
-                            hintText: "请输入内容",
-                            border: OutlineInputBorder(
+                        decoration: InputDecoration(
+                            hintText: s.plzInputContent,
+                            border: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey))),
                       ),
                       divMargin,
-                      const Text("明文内容："),
+                      Text(s.plainText),
                       TextField(
                         controller: _encryptController,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                            hintText: "请输入需要加密的内容",
-                            border: OutlineInputBorder(
+                        decoration: InputDecoration(
+                            hintText: s.plzInputNeedEnContent,
+                            border: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey))),
                       ),
                       divMargin,
@@ -124,13 +126,13 @@ class _TripleDesPageState extends State<TripleDesPage> {
                               onPressed: encrypt,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Text(
-                                    "加密",
-                                    style: TextStyle(
+                                    s.encrypt,
+                                    style: const TextStyle(
                                         color: Colors.white, fontSize: 16),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.arrow_downward,
                                     color: Colors.white,
                                   )
@@ -147,13 +149,13 @@ class _TripleDesPageState extends State<TripleDesPage> {
                               onPressed: decrypt,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Text(
-                                    "解密",
-                                    style: TextStyle(
+                                    s.decrypt,
+                                    style: const TextStyle(
                                         color: Colors.white, fontSize: 16),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.arrow_upward,
                                     color: Colors.white,
                                   )
@@ -164,14 +166,14 @@ class _TripleDesPageState extends State<TripleDesPage> {
                         ],
                       ),
                       divMargin,
-                      const Text("密文内容："),
+                      Text(s.cipherText),
                       TextField(
                         controller: _decryptController,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                            hintText: "请输入需要解密的内容",
-                            border: OutlineInputBorder(
+                        decoration: InputDecoration(
+                            hintText: s.plzInputNeedDeContent,
+                            border: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey))),
                       ),
                     ],
@@ -236,7 +238,7 @@ class _TripleDesPageState extends State<TripleDesPage> {
     var iv = _ivController.text;
 
     if (key.isEmpty || iv.isEmpty || name.isEmpty) {
-      showToast("名称和参数不能为空");
+      showToast(s.nameAndParamsNotEmpty);
       return;
     }
 
@@ -286,7 +288,7 @@ class _TripleDesPageState extends State<TripleDesPage> {
     var content = _encryptController.text;
 
     if (key.isEmpty || iv.isEmpty || content.isEmpty) {
-      showToast("参数和内容不能为空");
+      showToast(s.paramsAndContentNotEmpty);
       return;
     }
 
@@ -304,7 +306,7 @@ class _TripleDesPageState extends State<TripleDesPage> {
     var content = _decryptController.text;
 
     if (key.isEmpty || iv.isEmpty || content.isEmpty) {
-      showToast("参数和内容不能为空");
+      showToast(s.paramsAndContentNotEmpty);
       return;
     }
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:haha_tools/com/josephuszhou/widget/common_widget.dart';
 import 'package:pasteboard/pasteboard.dart';
 
+import '../base/base_state.dart';
 import '../util/log_util.dart';
 import '../util/qrcode_util.dart';
 
@@ -15,7 +16,8 @@ class ReadQrCodePage extends StatefulWidget {
   State<ReadQrCodePage> createState() => _ReadQrCodePageState();
 }
 
-class _ReadQrCodePageState extends State<ReadQrCodePage> {
+class _ReadQrCodePageState extends BaseState<ReadQrCodePage> {
+
   String _imageContent = "";
 
   Uint8List? _imageBytes;
@@ -27,7 +29,7 @@ class _ReadQrCodePageState extends State<ReadQrCodePage> {
         children: [
           GestureDetector(
             onTap: () => {Navigator.pop(context)},
-            child: backWidget(),
+            child: backWidget(context),
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -35,18 +37,18 @@ class _ReadQrCodePageState extends State<ReadQrCodePage> {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
-                    const Text(
-                      "将图片复制到剪贴板，点击按钮进行解析",
-                      style: TextStyle(fontSize: 14, color: Colors.black),
+                    Text(
+                      s.copyImageAndParse,
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
                     ),
                     Padding(
                         padding: const EdgeInsets.all(8),
                         child: MaterialButton(
                           height: 40,
                           color: Colors.blue,
-                          child: const Text(
-                            "解析",
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          child: Text(
+                            s.parse,
+                            style: const TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           onPressed: () {
                             readImages();
@@ -107,7 +109,7 @@ class _ReadQrCodePageState extends State<ReadQrCodePage> {
     }
     if (!hasResult) {
       setState(() {
-        _imageContent = "No qrcode found!";
+        _imageContent = s.noQrCodeFound;
       });
     }
   }

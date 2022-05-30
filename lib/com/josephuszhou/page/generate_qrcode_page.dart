@@ -1,6 +1,7 @@
 import 'package:buffer_image/buffer_image.dart';
 import 'package:flutter/material.dart';
 
+import '../base/base_state.dart';
 import '../util/qrcode_util.dart';
 import '../widget/common_widget.dart';
 
@@ -11,7 +12,7 @@ class WriteQrCodePage extends StatefulWidget {
   State<WriteQrCodePage> createState() => _WriteQrCodePageState();
 }
 
-class _WriteQrCodePageState extends State<WriteQrCodePage> {
+class _WriteQrCodePageState extends BaseState<WriteQrCodePage> {
   final TextEditingController _controller = TextEditingController();
 
   BufferImage? _image;
@@ -23,7 +24,7 @@ class _WriteQrCodePageState extends State<WriteQrCodePage> {
         children: [
           GestureDetector(
             onTap: () => {Navigator.pop(context)},
-            child: backWidget(),
+            child: backWidget(context),
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -38,9 +39,9 @@ class _WriteQrCodePageState extends State<WriteQrCodePage> {
                         controller: _controller,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                            hintText: "请输入内容",
-                            border: OutlineInputBorder(
+                        decoration: InputDecoration(
+                            hintText: s.plzInputContent,
+                            border: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey))),
                       ),
                     ),
@@ -52,10 +53,10 @@ class _WriteQrCodePageState extends State<WriteQrCodePage> {
                           height: 40,
                           child: MaterialButton(
                             color: Colors.blue,
-                            child: const Text(
-                              "生成二维码",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
+                            child: Text(
+                              s.generateQrCode,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 16),
                             ),
                             onPressed: () {
                               createQrCode();

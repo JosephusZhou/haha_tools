@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
+import '../base/base_state.dart';
 import '../util/font_util.dart';
 import '../util/sys_util.dart';
 import 'android_res_page.dart';
@@ -10,15 +11,13 @@ import 'read_qrcode_page.dart';
 import 'triple_des_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends BaseState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildCardItem(context, "Android 资源工具", "复制 Android 多 dpi 资源",
+              buildCardItem(context, s.androidResTools, s.androidResToolsTips,
                   Icons.copy_outlined, () {
                 Navigator.push(
                     context,
@@ -37,8 +36,8 @@ class _HomePageState extends State<HomePage> {
               }, supportAndroid: false, supportIOS: false, supportWeb: false),
               buildCardItem(
                 context,
-                "3DES 加解密工具",
-                "3DES 便捷加解密",
+                s.tripleDesTools,
+                s.tripleDesToolsTips,
                 Icons.enhanced_encryption,
                 () {
                   Navigator.push(
@@ -47,7 +46,9 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => const TripleDesPage()));
                 },
               ),
-              buildCardItem(context, "二维码工具", "解析二维码内容", Icons.qr_code, () {
+              buildCardItem(
+                  context, s.qrcodeTools, s.qrcodeToolsTips1, Icons.qr_code,
+                  () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -55,8 +56,8 @@ class _HomePageState extends State<HomePage> {
               }, supportAndroid: false, supportIOS: false, supportWeb: false),
               buildCardItem(
                 context,
-                "二维码工具",
-                "生成二维码内容",
+                s.qrcodeTools,
+                s.qrcodeToolsTips2,
                 Icons.qr_code,
                 () {
                   Navigator.push(
@@ -85,27 +86,27 @@ class _HomePageState extends State<HomePage> {
       child: GestureDetector(
         onTap: () {
           if (kIsWeb && !supportWeb) {
-            showToast("Not support Web!");
+            showToast(s.noSupportWeb);
             return;
           }
           if (isWindows() && !supportWindows) {
-            showToast("No support Windows!");
+            showToast(s.noSupportWindows);
             return;
           }
           if (isMacOS() && !supportMac) {
-            showToast("No support MacOS!");
+            showToast(s.noSupportMacOS);
             return;
           }
           if (isLinux() && !supportLinux) {
-            showToast("No support Linux!");
+            showToast(s.noSupportLinux);
             return;
           }
           if (isAndroid() && !supportAndroid) {
-            showToast("No support Android!");
+            showToast(s.noSupportAndroid);
             return;
           }
           if (isIOS() && !supportIOS) {
-            showToast("No support iOS!");
+            showToast(s.noSupportIOS);
             return;
           }
           onTap();

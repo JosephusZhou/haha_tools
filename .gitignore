@@ -21,6 +21,10 @@ migrate_working_dir/
 # is commented out by default.
 #.vscode/
 
+#Flutter generated files
+*.g.dart
+desiredFileName.txt
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
@@ -31,6 +35,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.run
 
 # Web related
 lib/generated_plugin_registrant.dart
