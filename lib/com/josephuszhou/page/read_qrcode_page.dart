@@ -2,12 +2,13 @@ import 'dart:typed_data';
 
 import 'package:buffer_image/buffer_image.dart';
 import 'package:flutter/material.dart';
-import 'package:haha_tools/com/josephuszhou/widget/common_widget.dart';
 import 'package:pasteboard/pasteboard.dart';
 
 import '../base/base_state.dart';
 import '../util/log_util.dart';
 import '../util/qrcode_util.dart';
+import '../widget/common_widget.dart';
+import '../style/widget_style.dart' as style;
 
 class ReadQrCodePage extends StatefulWidget {
   const ReadQrCodePage({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _ReadQrCodePageState extends BaseState<ReadQrCodePage> {
                           color: Colors.blue,
                           child: Text(
                             s.parse,
-                            style: const TextStyle(color: Colors.white, fontSize: 16),
+                            style: style.btnTextStyle,
                           ),
                           onPressed: () {
                             readImages();

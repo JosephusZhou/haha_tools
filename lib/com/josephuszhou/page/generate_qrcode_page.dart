@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../base/base_state.dart';
 import '../util/qrcode_util.dart';
 import '../widget/common_widget.dart';
+import '../style/widget_style.dart' as style;
 
 class WriteQrCodePage extends StatefulWidget {
   const WriteQrCodePage({Key? key}) : super(key: key);
@@ -41,8 +42,8 @@ class _WriteQrCodePageState extends BaseState<WriteQrCodePage> {
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                             hintText: s.plzInputContent,
-                            border: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey))),
+                            border: style.inputBorder
+                        ),
                       ),
                     ),
                     Padding(
@@ -55,8 +56,7 @@ class _WriteQrCodePageState extends BaseState<WriteQrCodePage> {
                             color: Colors.blue,
                             child: Text(
                               s.generateQrCode,
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 16),
+                              style: style.btnTextStyle,
                             ),
                             onPressed: () {
                               createQrCode();

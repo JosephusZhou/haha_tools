@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:haha_tools/com/josephuszhou/util/config_util.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '../base/base_state.dart';
 import '../entity/config_entity.dart';
+import '../style/widget_style.dart' as style;
+import '../util/config_util.dart';
 import '../util/triple_des_util.dart' as triple_des;
 import '../widget/common_widget.dart';
 
@@ -61,10 +62,9 @@ class _TripleDesPageState extends BaseState<TripleDesPage> {
                               maxLines: 1,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
-                                  hintText: s.ifNeedPlzInputName,
-                                  border: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.grey))),
+                                hintText: s.ifNeedPlzInputName,
+                                border: style.inputBorder,
+                              ),
                             ),
                           ),
                           divMargin,
@@ -74,8 +74,7 @@ class _TripleDesPageState extends BaseState<TripleDesPage> {
                             onPressed: saveKeyIv,
                             child: Text(
                               s.save,
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 16),
+                              style: style.btnTextStyle,
                             ),
                           ),
                         ],
@@ -89,8 +88,7 @@ class _TripleDesPageState extends BaseState<TripleDesPage> {
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                             hintText: s.plzInputContent,
-                            border: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey))),
+                            border: style.inputBorder),
                       ),
                       divMargin,
                       Text(s.enIv),
@@ -100,8 +98,7 @@ class _TripleDesPageState extends BaseState<TripleDesPage> {
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                             hintText: s.plzInputContent,
-                            border: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey))),
+                            border: style.inputBorder),
                       ),
                       divMargin,
                       Text(s.plainText),
@@ -111,8 +108,7 @@ class _TripleDesPageState extends BaseState<TripleDesPage> {
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                             hintText: s.plzInputNeedEnContent,
-                            border: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey))),
+                            border: style.inputBorder),
                       ),
                       divMargin,
                       Row(
@@ -129,8 +125,7 @@ class _TripleDesPageState extends BaseState<TripleDesPage> {
                                 children: [
                                   Text(
                                     s.encrypt,
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 16),
+                                    style: style.btnTextStyle,
                                   ),
                                   const Icon(
                                     Icons.arrow_downward,
@@ -152,8 +147,7 @@ class _TripleDesPageState extends BaseState<TripleDesPage> {
                                 children: [
                                   Text(
                                     s.decrypt,
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 16),
+                                    style: style.btnTextStyle,
                                   ),
                                   const Icon(
                                     Icons.arrow_upward,
@@ -173,8 +167,7 @@ class _TripleDesPageState extends BaseState<TripleDesPage> {
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                             hintText: s.plzInputNeedDeContent,
-                            border: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey))),
+                            border: style.inputBorder),
                       ),
                     ],
                   ),
