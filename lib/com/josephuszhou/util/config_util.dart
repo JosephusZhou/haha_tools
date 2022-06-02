@@ -48,7 +48,14 @@ class AppConfig {
         _appConfig = AppConfigEntity.fromJson(json.decode("{}"));
       }
     } else {
-      _appConfig = AppConfigEntity([]);
+      _appConfig = AppConfigEntity([], "");
+    }
+  }
+
+  void writeConfig() {
+    String newJsonString = json.encode(_appConfig.toJson());
+    if (file != null) {
+      file!.writeAsStringSync(newJsonString);
     }
   }
 
@@ -58,9 +65,15 @@ class AppConfig {
 
   void writeTripleDesConfig(List<TripleDesConfigEntity> list) {
     _appConfig.tripleDesConfigList = list;
-    String newJsonString = json.encode(_appConfig.toJson());
-    if (file != null) {
-      file!.writeAsStringSync(newJsonString);
-    }
+    writeConfig();
+  }
+
+  String readAndroidResDir() {
+    return _appConfig.androidResDir;
+  }
+
+  void writeAndroidResDir(String dir) {
+    _appConfig.androidResDir = dir;
+    writeConfig();
   }
 }

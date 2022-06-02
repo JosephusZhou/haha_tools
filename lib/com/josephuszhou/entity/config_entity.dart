@@ -1,16 +1,25 @@
 class AppConfigEntity {
+  // 3des encrypt params config list
   List<TripleDesConfigEntity> tripleDesConfigList;
 
-  AppConfigEntity(this.tripleDesConfigList);
+  // Android res dir
+  String androidResDir;
+
+  AppConfigEntity(this.tripleDesConfigList, this.androidResDir);
 
   AppConfigEntity.fromJson(Map<String, dynamic> json)
       : tripleDesConfigList = json["tripleDesConfigList"] == null
             ? []
             : List<TripleDesConfigEntity>.from(json["tripleDesConfigList"]
-                .map((e) => TripleDesConfigEntity.fromJson(e)));
+                .map((e) => TripleDesConfigEntity.fromJson(e))),
+        androidResDir = json["androidResDir"] == null
+            ? ""
+            : json["androidResDir"] as String;
 
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{"tripleDesConfigList": tripleDesConfigList};
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        "tripleDesConfigList": tripleDesConfigList,
+        "androidResDir": androidResDir
+      };
 }
 
 class TripleDesConfigEntity {

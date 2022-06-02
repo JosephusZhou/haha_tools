@@ -52,6 +52,8 @@ dependencies:
 
   path: ^1.8.1
 
+  file_picker: ^4.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 TextStyle btnTextStyle = const TextStyle(color: Colors.white, fontSize: 16);
 
 // 输入框边框样式
-InputBorder inputBorder = const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey));
+InputBorder inputBorder =
+    const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey));
 
-// 16 边距
+// 标题文字样式
+TextStyle titleTextStyle = const TextStyle(
+    color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold);
