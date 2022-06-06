@@ -403,19 +403,19 @@ class _AndroidResPageState extends BaseState<AndroidResPage> {
           confirmRewrite = true;
           File file = File(originalFilePath);
           await file.copy(newFilePath);
-          log += s.copyTo + newFilePath;
+          log += "${s.copyTo}$newFilePath\n";
         }
       }
-      
-      if (log.isNotEmpty) {
-        if (_gitAdd) {
-          var result = await Process.run("cd $_resDir && git add *", []);
-          log += result.stdout;
-        }
-        setState(() {
-          _log = log;
-        });
+    }
+
+    if (log.isNotEmpty) {
+      if (_gitAdd) {
+        await Process.run("bash", ["-c", "cd $_resDir && git add *"]);
+        log += "git add *";
       }
+      setState(() {
+        _log = log;
+      });
     }
   }
 
