@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:file_drag_and_drop/drag_container_listener.dart';
+import 'package:file_drag_and_drop/file_drag_and_drop_channel.dart';
+import 'package:file_drag_and_drop/file_result.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:haha_tools/com/josephuszhou/util/config_util.dart';
@@ -16,7 +19,8 @@ class AndroidResPage extends StatefulWidget {
   State<AndroidResPage> createState() => _AndroidResPageState();
 }
 
-class _AndroidResPageState extends BaseState<AndroidResPage> {
+class _AndroidResPageState extends BaseState<AndroidResPage>
+    implements DragContainerListener {
   final List<String> _mipDpiList = [
     "mipmap-mdpi",
     "mipmap-hdpi",
@@ -78,7 +82,10 @@ class _AndroidResPageState extends BaseState<AndroidResPage> {
               child: Container(
                 padding: const EdgeInsets.only(
                     left: 16, right: 16, top: 8, bottom: 8),
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -312,6 +319,15 @@ class _AndroidResPageState extends BaseState<AndroidResPage> {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
       String filePath = result.files.single.path!;
+      getFiles(filePath);
+    } else {
+      getFiles(null);
+    }
+  }
+
+  /// 处理选择的文件
+  void getFiles(String? filePath) {
+    if (filePath != null) {
       String fileName = basenameWithoutExtension(filePath);
       _fileSuffix = extension(filePath);
 
@@ -440,4 +456,39 @@ class _AndroidResPageState extends BaseState<AndroidResPage> {
       );
     });
   }
-}
+
+  @override
+  void initState() {
+    super.initState();
+    dragAndDropChannel.addListener(this);
+  }
+
+  @override
+  void dispose() {
+    dragAndDropChannel.removeListener(this);
+    super.dispose();
+  }
+
+  @override
+  void draggingFileEntered() {
+  }
+
+  @override
+  void draggingFileExit() {
+  }
+
+  @override
+  void performDragFileOperation(List<DragFileResult> fileResults) {
+    if (fileResults.isNotEmpty) {
+      DragFileResult result = fileResults[0];
+        String filePath = result.path;
+        getFiles(filePath);
+      } else {
+        getFiles(null);
+      }
+    }
+
+    @override
+    void prepareForDragFileOperation() {
+    }
+  }
