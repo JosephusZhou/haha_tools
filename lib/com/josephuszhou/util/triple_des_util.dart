@@ -12,7 +12,7 @@ String? encrypt(String text, String key, String iv) {
         mode: DESMode.CBC,
         paddingType: DESPaddingType.PKCS5,
         iv: iv.codeUnits);
-    var encrypted = hex.encode(des3CBC.encrypt(text.codeUnits));
+    var encrypted = hex.encode(des3CBC.encrypt(utf8.encode(text)));
     dLog(encrypted);
     return encrypted;
   } catch (e) {
