@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '../base/base_state.dart';
+import '../constant/constants.dart';
 import '../util/font_util.dart';
 import '../util/sys_util.dart';
-import 'android_res_page.dart';
-import 'generate_qrcode_page.dart';
-import 'read_qrcode_page.dart';
-import 'triple_des_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,10 +26,7 @@ class _HomePageState extends BaseState<HomePage> {
             children: [
               buildCardItem(context, s.androidResTools, s.androidResToolsTips,
                   Icons.copy_outlined, () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AndroidResPage()));
+                Navigator.pushNamed(context, Constants.androidResPage);
               }, supportAndroid: false, supportIOS: false, supportWeb: false),
               buildCardItem(
                 context,
@@ -40,19 +34,13 @@ class _HomePageState extends BaseState<HomePage> {
                 s.tripleDesToolsTips,
                 Icons.enhanced_encryption,
                 () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const TripleDesPage()));
+                  Navigator.pushNamed(context, Constants.tripleDesPage);
                 },
               ),
               buildCardItem(
                   context, s.qrcodeTools, s.qrcodeToolsTips1, Icons.qr_code,
                   () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ReadQrCodePage()));
+                Navigator.pushNamed(context, Constants.readQrCodePage);
               }, supportAndroid: false, supportIOS: false, supportWeb: false),
               buildCardItem(
                 context,
@@ -60,10 +48,7 @@ class _HomePageState extends BaseState<HomePage> {
                 s.qrcodeToolsTips2,
                 Icons.qr_code,
                 () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const WriteQrCodePage()));
+                  Navigator.pushNamed(context, Constants.generateQrCodePage);
                 },
               ),
             ],

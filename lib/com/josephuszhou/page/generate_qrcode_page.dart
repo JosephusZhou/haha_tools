@@ -6,14 +6,14 @@ import '../util/qrcode_util.dart';
 import '../widget/common_widget.dart';
 import '../style/widget_style.dart' as style;
 
-class WriteQrCodePage extends StatefulWidget {
-  const WriteQrCodePage({Key? key}) : super(key: key);
+class GenerateQrCodePage extends StatefulWidget {
+  const GenerateQrCodePage({Key? key}) : super(key: key);
 
   @override
-  State<WriteQrCodePage> createState() => _WriteQrCodePageState();
+  State<GenerateQrCodePage> createState() => _GenerateQrCodePageState();
 }
 
-class _WriteQrCodePageState extends BaseState<WriteQrCodePage> {
+class _GenerateQrCodePageState extends BaseState<GenerateQrCodePage> {
   final TextEditingController _controller = TextEditingController();
 
   BufferImage? _image;

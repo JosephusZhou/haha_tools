@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:oktoast/oktoast.dart';
 
+import 'com/josephuszhou/constant/constants.dart';
+import 'com/josephuszhou/page/android_res_page.dart';
+import 'com/josephuszhou/page/generate_qrcode_page.dart';
 import 'com/josephuszhou/page/home_page.dart';
+import 'com/josephuszhou/page/read_qrcode_page.dart';
+import 'com/josephuszhou/page/triple_des_page.dart';
 import 'com/josephuszhou/util/config_util.dart';
 import 'l10n/s.g.dart';
 
@@ -32,8 +37,18 @@ class App extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomePage(),
+        routes: _buildRoutes(context),
       ),
     );
+  }
+
+  Map<String, WidgetBuilder> _buildRoutes(BuildContext context) {
+    return {
+      "/": (context) => const HomePage(),
+      Constants.androidResPage: (context) => const AndroidResPage(),
+      Constants.tripleDesPage: (context) => const TripleDesPage(),
+      Constants.readQrCodePage: (context) => const ReadQrCodePage(),
+      Constants.generateQrCodePage: (context) => const GenerateQrCodePage(),
+    };
   }
 }
