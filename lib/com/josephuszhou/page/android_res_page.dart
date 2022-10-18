@@ -179,6 +179,12 @@ class _AndroidResPageState extends BaseState<AndroidResPage>
                                   _languageSuffix = value!;
                                 });
                               }),
+                              divMargin4,
+                              radioWidget("ms", _languageSuffix, (value) {
+                                setState(() {
+                                  _languageSuffix = value!;
+                                });
+                              }),
                             ],
                           ),
                         ),
