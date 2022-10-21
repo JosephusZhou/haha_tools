@@ -54,5 +54,7 @@
     "warning": "警告",
     "rewriteWarningTips": "对应资源目录已存在同名文件，是否要覆盖？",
     "cancel": "取消",
-    "confirm": "确认"
+    "confirm": "确认",
+    "quotes": "行情",
+    "quotesToolsTips": "查看行情"
 }

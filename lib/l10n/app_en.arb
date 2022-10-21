@@ -54,5 +54,7 @@
     "warning": "Warning",
     "rewriteWarningTips": "A file with the same name already exists in the corresponding resource directory.\nDo you want to overwrite it?",
     "cancel": "Cancel",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "quotes": "Quotes",
+    "quotesToolsTips": "View Quotes"
 }

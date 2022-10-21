@@ -1,6 +1,7 @@
 import 'package:file_drag_and_drop/file_drag_and_drop_channel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:haha_tools/com/josephuszhou/page/quotes_page.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'com/josephuszhou/constant/constants.dart';
@@ -49,6 +50,7 @@ class App extends StatelessWidget {
       Constants.tripleDesPage: (context) => const TripleDesPage(),
       Constants.readQrCodePage: (context) => const ReadQrCodePage(),
       Constants.generateQrCodePage: (context) => const GenerateQrCodePage(),
+      Constants.quotesPage: (context) => const QuotesPage(),
     };
   }
 }

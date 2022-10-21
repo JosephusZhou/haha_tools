@@ -51,6 +51,10 @@ class _HomePageState extends BaseState<HomePage> {
                   Navigator.pushNamed(context, Constants.generateQrCodePage);
                 },
               ),
+              buildCardItem(context, s.quotes, s.quotesToolsTips,
+                  Icons.ssid_chart, () {
+                    Navigator.pushNamed(context, Constants.quotesPage);
+                  }),
             ],
           ),
         ),
