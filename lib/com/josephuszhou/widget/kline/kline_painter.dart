@@ -1,12 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:haha_tools/com/josephuszhou/widget/kline/kline_view_config.dart';
+import 'package:haha_tools/com/josephuszhou/widget/kline/kline_config.dart';
 
+import '../../util/log_util.dart';
 import 'kline_entity.dart';
 
 class KLinePainter extends CustomPainter {
-  final KLineViewConfig config;
+
+  final KLineConfig config;
 
   final List<KLineEntity> dataList;
 
@@ -66,36 +68,46 @@ class KLinePainter extends CustomPainter {
     return config.itemWidth * (index + 1) - config.itemWidth / 2;
   }
 
-  double getY(Size size, double value) {
-    var h = size.height / (maxValue - minValue);
-    return h * (maxValue - value);
+  double getY(double value) {
+    var h = config.mainDrawHeight / (maxValue - minValue);
+    return config.topPadding + h * (maxValue - value);
   }
 
   @override
   void paint(Canvas canvas, Size size) {
+    dLog("KLineView: KlinePainter->paint");
     calculate(size);
 
     for (int i = leftIndex; i <= rightIndex; i++) {
       var item = dataList[i];
-      if (item.upDown.contains("-")) {
+      if (item.close <= item.open) {
         candlePaint.color = config.downColor;
       } else {
         candlePaint.color = config.upColor;
       }
 
       var x = getX(i);
+      var openY = getY(item.open);
+      var closeY = getY(item.close);
+      if (openY == closeY) {
+        closeY = openY + 0.5;
+      } else if (closeY > openY && closeY - openY < 0.5) {
+        closeY = openY + 0.5;
+      } else if (openY > closeY && openY - closeY < 0.5) {
+        closeY = openY - 0.5;
+      }
       Rect rect = Rect.fromLTRB(
           x - config.candleWidth / 2,
-          getY(size, item.open),
+          openY,
           x + config.candleWidth / 2,
-          getY(size, item.close));
+          closeY);
       canvas.drawRect(rect, candlePaint);
 
       rect = Rect.fromLTRB(
           x - config.candleLineWidth / 2,
-          getY(size, item.high),
+          getY(item.high),
           x + config.candleLineWidth / 2,
-          getY(size, item.low));
+          getY(item.low));
       canvas.drawRect(rect, candlePaint);
     }
 
@@ -105,7 +117,7 @@ class KLinePainter extends CustomPainter {
           style: const TextStyle(fontSize: 12.0, color: Colors.black))
       ..textDirection = TextDirection.rtl
       ..layout(maxWidth: size.width, minWidth: size.width)
-      ..paint(canvas, const Offset(0.0, 0.0));
+      ..paint(canvas, Offset(-config.textMargin, config.topPadding + config.textMargin));
 
     textPainter
       ..text = TextSpan(
@@ -113,11 +125,17 @@ class KLinePainter extends CustomPainter {
           style: const TextStyle(fontSize: 12.0, color: Colors.black))
       ..textDirection = TextDirection.rtl
       ..layout(maxWidth: size.width, minWidth: size.width)
-      ..paint(canvas, Offset(0.0, size.height - textPainter.size.height));
+      ..paint(canvas, Offset(-config.textMargin, config.topPadding + config.mainDrawHeight - textPainter.size.height - config.textMargin));
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+    if ((oldDelegate as KLinePainter).config == config &&
+        oldDelegate.dataList == dataList) {
+      dLog("KLineView: KLinePainter->not repaint");
+      return false;
+    }
+    dLog("KLineView: KLinePainter->repaint");
+    return true;
   }
 }

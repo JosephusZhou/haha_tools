@@ -1,14 +1,16 @@
 import 'package:flutter/widgets.dart';
 
+import '../../util/log_util.dart';
 import 'kline_bg_painter.dart';
 import 'kline_entity.dart';
 import 'kline_painter.dart';
-import 'kline_view_config.dart';
+import 'kline_config.dart';
 
 /// K 线图
 class KLineView extends StatefulWidget {
+
   // 配置
-  final KLineViewConfig config;
+  final KLineConfig config;
 
   // 数据
   final List<KLineEntity> dataList;
@@ -26,17 +28,22 @@ class KLineView extends StatefulWidget {
 class _KLineViewState extends State<KLineView> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return GestureDetector(
+        child: ClipRect(
+            child: Stack(
       children: [
         CustomPaint(
-          size: Size(MediaQuery.of(context).size.width - 200, 500),
+          size: Size(widget.config.width, widget.config.height),
           painter: KLineBgPainter(widget.config),
         ),
         CustomPaint(
-          size: Size(MediaQuery.of(context).size.width - 200, 500),
+          size: Size(widget.config.width, widget.config.height),
           painter: KLinePainter(widget.config, widget.dataList),
         ),
       ],
-    );
+    )),
+    onHorizontalDragStart: (details) {
+      dLog("aaaa");
+    },);
   }
 }

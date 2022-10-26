@@ -6,7 +6,7 @@ import '../base/base_state.dart';
 import '../widget/common_widget.dart';
 import '../widget/kline/kline_entity.dart';
 import '../widget/kline/kline_view.dart';
-import '../widget/kline/kline_view_config.dart';
+import '../widget/kline/kline_config.dart';
 
 class QuotesPage extends StatefulWidget {
   const QuotesPage({Key? key}) : super(key: key);
@@ -21,6 +21,14 @@ class _QuotesPageState extends BaseState<QuotesPage> {
 
   @override
   Widget build(BuildContext context) {
+    var kLineConfig = KLineConfig()
+      ..width = MediaQuery.of(context).size.width - 200
+      ..height = 600
+      ..upColor = const Color(0xFF0D9172)
+      ..downColor = const Color(0xFFEF383C);
+
+    var kLineData = LineData.fromJson(json.decode(jsonStr)).lineData;
+
     return Scaffold(
       body: Column(
         children: [
@@ -30,12 +38,13 @@ class _QuotesPageState extends BaseState<QuotesPage> {
           ),
           Expanded(
             child: SingleChildScrollView(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: KLineView(KLineViewConfig(),
-                      LineData.fromJson(json.decode(jsonStr)).lineData),
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: KLineView(kLineConfig, kLineData),
+                  )
+                ],
               ),
             ),
           ),

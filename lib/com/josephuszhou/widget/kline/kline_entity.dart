@@ -40,7 +40,7 @@ class KLineEntity {
         open = double.parse(json["open"] as String),
         high = double.parse(json["high"] as String),
         low = double.parse(json["low"] as String),
-        close = double.parse(json["low"] as String),
+        close = double.parse(json["close"] as String),
         prevClose = double.parse(json["prevClose"] as String),
         vol = double.parse(json["vol"] as String),
         val = double.parse(json["val"] as String),
