@@ -56,6 +56,10 @@ dependencies:
 
   file_drag_and_drop: ^0.0.2
 
+  # local package
+  kline_view:
+    path: ../KLineView
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

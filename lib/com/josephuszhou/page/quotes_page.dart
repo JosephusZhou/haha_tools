@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:kline_view/kline_config.dart';
+import 'package:kline_view/kline_entity.dart';
+import 'package:kline_view/kline_view.dart';
 
 import '../base/base_state.dart';
 import '../widget/common_widget.dart';
-import '../widget/kline/kline_entity.dart';
-import '../widget/kline/kline_view.dart';
-import '../widget/kline/kline_config.dart';
 
 class QuotesPage extends StatefulWidget {
   const QuotesPage({Key? key}) : super(key: key);
@@ -24,6 +24,7 @@ class _QuotesPageState extends BaseState<QuotesPage> {
     var kLineConfig = KLineConfig()
       ..width = MediaQuery.of(context).size.width - 200
       ..height = 600
+      ..overScrollWidth = (MediaQuery.of(context).size.width - 200) / 5
       ..upColor = const Color(0xFF0D9172)
       ..downColor = const Color(0xFFEF383C);
 
