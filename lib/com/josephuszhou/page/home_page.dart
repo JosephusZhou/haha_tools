@@ -35,7 +35,7 @@ class _HomePageState extends BaseState<HomePage> {
                 Icons.enhanced_encryption,
                 () {
                   Navigator.pushNamed(context, Constants.tripleDesPage);
-                },
+                }, supportWeb: false
               ),
               buildCardItem(
                   context, s.qrcodeTools, s.qrcodeToolsTips1, Icons.qr_code,
@@ -74,29 +74,32 @@ class _HomePageState extends BaseState<HomePage> {
       padding: const EdgeInsets.only(left: 16, top: 16),
       child: GestureDetector(
         onTap: () {
-          if (kIsWeb && !supportWeb) {
-            showToast(s.noSupportWeb);
-            return;
-          }
-          if (isWindows() && !supportWindows) {
-            showToast(s.noSupportWindows);
-            return;
-          }
-          if (isMacOS() && !supportMac) {
-            showToast(s.noSupportMacOS);
-            return;
-          }
-          if (isLinux() && !supportLinux) {
-            showToast(s.noSupportLinux);
-            return;
-          }
-          if (isAndroid() && !supportAndroid) {
-            showToast(s.noSupportAndroid);
-            return;
-          }
-          if (isIOS() && !supportIOS) {
-            showToast(s.noSupportIOS);
-            return;
+          if (kIsWeb) {
+            if (!supportWeb) {
+              showToast(s.noSupportWeb);
+              return;
+            }
+          } else {
+            if (isWindows() && !supportWindows) {
+              showToast(s.noSupportWindows);
+              return;
+            }
+            if (isMacOS() && !supportMac) {
+              showToast(s.noSupportMacOS);
+              return;
+            }
+            if (isLinux() && !supportLinux) {
+              showToast(s.noSupportLinux);
+              return;
+            }
+            if (isAndroid() && !supportAndroid) {
+              showToast(s.noSupportAndroid);
+              return;
+            }
+            if (isIOS() && !supportIOS) {
+              showToast(s.noSupportIOS);
+              return;
+            }
           }
           onTap();
         },
