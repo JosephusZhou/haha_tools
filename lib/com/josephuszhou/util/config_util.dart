@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:haha_tools/com/josephuszhou/entity/config_entity.dart';
 import 'package:haha_tools/com/josephuszhou/util/log_util.dart';
 import 'package:path/path.dart' as p;
@@ -19,6 +20,10 @@ class AppConfig {
   File? file;
 
   void loadConfig() async {
+    if (kIsWeb) {
+      return;
+    }
+
     String? path;
     switch (Platform.operatingSystem) {
       case 'linux':

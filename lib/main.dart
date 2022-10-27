@@ -1,4 +1,5 @@
 import 'package:file_drag_and_drop/file_drag_and_drop_channel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:oktoast/oktoast.dart';
@@ -14,7 +15,9 @@ import 'l10n/s.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dragAndDropChannel.initializedMainView();
+  if (!kIsWeb) {
+    await dragAndDropChannel.initializedMainView();
+  }
   runApp(const App());
 }
 
