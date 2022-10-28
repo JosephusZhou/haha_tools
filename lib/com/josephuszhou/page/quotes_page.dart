@@ -24,7 +24,7 @@ class _QuotesPageState extends BaseState<QuotesPage> {
     var kLineConfig = KLineConfig()
       ..width = MediaQuery.of(context).size.width * 0.9
       ..height = 600
-      ..overScrollWidth = (MediaQuery.of(context).size.width - 200) / 5
+      ..overScrollWidth = (MediaQuery.of(context).size.width - 200) / 7
       ..upColor = const Color(0xFF0D9172)
       ..downColor = const Color(0xFFEF383C);
 
