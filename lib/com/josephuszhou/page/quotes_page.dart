@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:kline_view/kline_config.dart';
-import 'package:kline_view/kline_entity.dart';
 import 'package:kline_view/kline_view.dart';
 
 import '../base/base_state.dart';
