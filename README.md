@@ -23,7 +23,7 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Flu
 
 ``` bash
 # Clone this repository
-git clone https://github.com/JosephusZhou/haha_tools.git
+git clone git@github.com:JosephusZhou/haha_tools.git
 # Go into the repository
 cd haha_tools
 # run the app
