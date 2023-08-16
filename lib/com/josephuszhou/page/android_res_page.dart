@@ -39,7 +39,7 @@ class _AndroidResPageState extends BaseState<AndroidResPage>
 
   String _resDir = AppConfig().readAndroidResDir();
 
-  final List<bool> _dpiSuffix = [true, true, true, true, true];
+  final List<bool> _dpiSuffix = [false, true, true, true, true];
 
   String _dayNightSuffix = "";
 
@@ -181,6 +181,12 @@ class _AndroidResPageState extends BaseState<AndroidResPage>
                               }),
                               divMargin4,
                               radioWidget("ms", _languageSuffix, (value) {
+                                setState(() {
+                                  _languageSuffix = value!;
+                                });
+                              }),
+                              divMargin4,
+                              radioWidget("fa", _languageSuffix, (value) {
                                 setState(() {
                                   _languageSuffix = value!;
                                 });
