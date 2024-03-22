@@ -4,6 +4,8 @@
     "androidResToolsTips": "复制 Android 多 dpi 资源",
     "tripleDesTools": "3DES 加解密工具",
     "tripleDesToolsTips": "3DES 便捷加解密",
+    "smDesTools": "国密加解密工具",
+    "smDesToolsTips": "国密便捷加解密",
     "qrcodeTools": "二维码工具",
     "qrcodeToolsTips1": "解析二维码内容",
     "qrcodeToolsTips2": "生成二维码内容",

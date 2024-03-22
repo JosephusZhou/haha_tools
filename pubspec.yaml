@@ -56,6 +56,8 @@ dependencies:
 
   file_drag_and_drop: ^0.0.2
 
+  sm_crypto: ^1.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

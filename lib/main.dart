@@ -2,6 +2,7 @@ import 'package:file_drag_and_drop/file_drag_and_drop_channel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:haha_tools/com/josephuszhou/page/sm_des_page.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'com/josephuszhou/constant/constants.dart';
@@ -50,6 +51,7 @@ class App extends StatelessWidget {
       "/": (context) => const HomePage(),
       Constants.androidResPage: (context) => const AndroidResPage(),
       Constants.tripleDesPage: (context) => const TripleDesPage(),
+      Constants.smDesPage: (context) => const SMDesPage(),
       Constants.readQrCodePage: (context) => const ReadQrCodePage(),
       Constants.generateQrCodePage: (context) => const GenerateQrCodePage(),
     };
