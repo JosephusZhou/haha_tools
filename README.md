@@ -15,6 +15,7 @@
 
 * Android multiple dpi resources copy
 * 3DES encrypt and decrypt
+* Chinese national encryption algorithm SM4 encrypt and decrypt
 * QR code parsing and generation
 
 ## How to use it?
