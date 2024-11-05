@@ -5,7 +5,10 @@ class AppConfigEntity {
   // Android res dir
   String androidResDir;
 
-  AppConfigEntity(this.tripleDesConfigList, this.androidResDir);
+  // Android res dir
+  String harmonyResDir;
+
+  AppConfigEntity(this.tripleDesConfigList, this.androidResDir, this.harmonyResDir);
 
   AppConfigEntity.fromJson(Map<String, dynamic> json)
       : tripleDesConfigList = json["tripleDesConfigList"] == null
@@ -14,11 +17,15 @@ class AppConfigEntity {
                 .map((e) => TripleDesConfigEntity.fromJson(e))),
         androidResDir = json["androidResDir"] == null
             ? ""
-            : json["androidResDir"] as String;
+            : json["androidResDir"] as String,
+        harmonyResDir = json["harmonyResDir"] == null
+            ? ""
+            : json["harmonyResDir"] as String;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         "tripleDesConfigList": tripleDesConfigList,
-        "androidResDir": androidResDir
+        "androidResDir": androidResDir,
+        "harmonyResDir": harmonyResDir,
       };
 }
 

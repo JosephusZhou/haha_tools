@@ -2,6 +2,8 @@
     "appName": "HaHa Tools",
     "androidResTools": "Android resource tools",
     "androidResToolsTips": "Copy Android multi-dpi resources",
+    "harmonyResTools": "Harmony resource tools",
+    "harmonyResToolsTips": "Copy Harmony multi-dpi resources",
     "tripleDesTools": "3DES encryption and decryption tools",
     "tripleDesToolsTips": "3DES convenient encryption and decryption",
     "smDesTools": "SM encryption and decryption tools",
@@ -56,5 +58,6 @@
     "warning": "Warning",
     "rewriteWarningTips": "A file with the same name already exists in the corresponding resource directory.\nDo you want to overwrite it?",
     "cancel": "Cancel",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "hosResDirDemo": "Demo：../ProjectX/entry/src/main/resources"
 }

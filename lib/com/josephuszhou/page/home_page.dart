@@ -28,6 +28,10 @@ class _HomePageState extends BaseState<HomePage> {
                   Icons.copy_outlined, () {
                 Navigator.pushNamed(context, Constants.androidResPage);
               }, supportAndroid: false, supportIOS: false, supportWeb: false),
+              buildCardItem(context, s.harmonyResTools, s.harmonyResToolsTips,
+                  Icons.copy_outlined, () {
+                    Navigator.pushNamed(context, Constants.harmonyResPage);
+                  }, supportAndroid: false, supportIOS: false, supportWeb: false),
               buildCardItem(context, s.tripleDesTools, s.tripleDesToolsTips,
                   Icons.enhanced_encryption, () {
                 Navigator.pushNamed(context, Constants.tripleDesPage);

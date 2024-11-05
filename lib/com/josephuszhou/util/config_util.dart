@@ -53,7 +53,7 @@ class AppConfig {
         _appConfig = AppConfigEntity.fromJson(json.decode("{}"));
       }
     } else {
-      _appConfig = AppConfigEntity([], "");
+      _appConfig = AppConfigEntity([], "", "");
     }
   }
 
@@ -79,6 +79,15 @@ class AppConfig {
 
   void writeAndroidResDir(String dir) {
     _appConfig.androidResDir = dir;
+    writeConfig();
+  }
+
+  String readHarmonyResDir() {
+    return _appConfig.harmonyResDir;
+  }
+
+  void writeHarmonyResDir(String dir) {
+    _appConfig.harmonyResDir = dir;
     writeConfig();
   }
 }

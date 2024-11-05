@@ -2,6 +2,7 @@ import 'package:file_drag_and_drop/file_drag_and_drop_channel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:haha_tools/com/josephuszhou/page/harmony_res_page.dart';
 import 'package:haha_tools/com/josephuszhou/page/sm_des_page.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -50,6 +51,7 @@ class App extends StatelessWidget {
     return {
       "/": (context) => const HomePage(),
       Constants.androidResPage: (context) => const AndroidResPage(),
+      Constants.harmonyResPage: (context) => const HarmonyResPage(),
       Constants.tripleDesPage: (context) => const TripleDesPage(),
       Constants.smDesPage: (context) => const SMDesPage(),
       Constants.readQrCodePage: (context) => const ReadQrCodePage(),

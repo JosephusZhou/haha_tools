@@ -2,6 +2,8 @@
     "appName": "哈哈工具箱",
     "androidResTools": "Android 资源工具",
     "androidResToolsTips": "复制 Android 多 dpi 资源",
+    "harmonyResTools": "Harmony 资源工具",
+    "harmonyResToolsTips": "复制 Harmony 多 dpi 资源",
     "tripleDesTools": "3DES 加解密工具",
     "tripleDesToolsTips": "3DES 便捷加解密",
     "smDesTools": "国密加解密工具",
@@ -56,5 +58,7 @@
     "warning": "警告",
     "rewriteWarningTips": "对应资源目录已存在同名文件，是否要覆盖？",
     "cancel": "取消",
-    "confirm": "确认"
+    "confirm": "确认",
+    "hosResDirDemo": "示例：../ProjectX/entry/src/main/resources"
+
 }
