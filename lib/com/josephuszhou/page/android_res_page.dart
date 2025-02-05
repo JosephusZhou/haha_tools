@@ -438,8 +438,9 @@ class _AndroidResPageState extends BaseState<AndroidResPage>
 
     if (log.isNotEmpty) {
       if (_gitAdd) {
-        await Process.run("bash", ["-c", "cd $_resDir && git add *"]);
-        log += "git add *";
+        String path = _resDir.replaceAll(' ', "\\ ");
+        ProcessResult result = await Process.run("bash", ["-c", "cd $path && git add *"]);
+        log += "执行 git add * 命令，结果：${result.exitCode}, ${result.stdout}, ${result.stderr}";
       }
       setState(() {
         _log = log;
