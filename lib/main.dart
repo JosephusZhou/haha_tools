@@ -7,6 +7,7 @@ import 'package:haha_tools/com/josephuszhou/page/sm_des_page.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'com/josephuszhou/constant/constants.dart';
+import 'com/josephuszhou/page/aes_page.dart';
 import 'com/josephuszhou/page/android_res_page.dart';
 import 'com/josephuszhou/page/generate_qrcode_page.dart';
 import 'com/josephuszhou/page/home_page.dart';
@@ -53,6 +54,7 @@ class App extends StatelessWidget {
       Constants.androidResPage: (context) => const AndroidResPage(),
       Constants.harmonyResPage: (context) => const HarmonyResPage(),
       Constants.tripleDesPage: (context) => const TripleDesPage(),
+      Constants.aesPage: (context) => const AesPage(),
       Constants.smDesPage: (context) => const SMDesPage(),
       Constants.readQrCodePage: (context) => const ReadQrCodePage(),
       Constants.generateQrCodePage: (context) => const GenerateQrCodePage(),

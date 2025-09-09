@@ -53,7 +53,7 @@ class AppConfig {
         _appConfig = AppConfigEntity.fromJson(json.decode("{}"));
       }
     } else {
-      _appConfig = AppConfigEntity([], "", "");
+      _appConfig = AppConfigEntity([], [], "", "");
     }
   }
 
@@ -70,6 +70,15 @@ class AppConfig {
 
   void writeTripleDesConfig(List<TripleDesConfigEntity> list) {
     _appConfig.tripleDesConfigList = list;
+    writeConfig();
+  }
+
+  List<TripleDesConfigEntity> readAesConfig() {
+    return _appConfig.aesConfigList;
+  }
+
+  void writeAesConfig(List<TripleDesConfigEntity> list) {
+    _appConfig.aesConfigList = list;
     writeConfig();
   }
 

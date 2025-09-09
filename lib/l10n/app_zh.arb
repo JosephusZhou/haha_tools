@@ -6,6 +6,8 @@
     "harmonyResToolsTips": "复制 Harmony 多 dpi 资源",
     "tripleDesTools": "3DES 加解密工具",
     "tripleDesToolsTips": "3DES 便捷加解密",
+    "aesTools": "AES 加解密工具",
+    "aesToolsTips": "AES 便捷加解密",
     "smDesTools": "国密加解密工具",
     "smDesToolsTips": "国密便捷加解密",
     "qrcodeTools": "二维码工具",

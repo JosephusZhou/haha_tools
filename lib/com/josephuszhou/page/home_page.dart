@@ -36,6 +36,10 @@ class _HomePageState extends BaseState<HomePage> {
                   Icons.enhanced_encryption, () {
                 Navigator.pushNamed(context, Constants.tripleDesPage);
               }, supportWeb: false),
+              buildCardItem(context, s.aesTools, s.aesToolsTips,
+                  Icons.enhanced_encryption, () {
+                    Navigator.pushNamed(context, Constants.aesPage);
+                  }, supportWeb: false),
               buildCardItem(context, s.smDesTools, s.smDesToolsTips,
                   Icons.enhanced_encryption, () {
                     Navigator.pushNamed(context, Constants.smDesPage);

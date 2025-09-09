@@ -6,6 +6,8 @@
     "harmonyResToolsTips": "Copy Harmony multi-dpi resources",
     "tripleDesTools": "3DES encryption and decryption tools",
     "tripleDesToolsTips": "3DES convenient encryption and decryption",
+    "aesTools": "AES encryption and decryption tools",
+    "aesToolsTips": "AES convenient encryption and decryption",
     "smDesTools": "SM encryption and decryption tools",
     "smDesToolsTips": "SM convenient encryption and decryption",
     "qrcodeTools": "QR code tools",
