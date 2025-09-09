@@ -174,6 +174,12 @@ class _AndroidResPageState extends BaseState<AndroidResPage>
                                 });
                               }),
                               divMargin4,
+                              radioWidget("zh-rHK", _languageSuffix, (value) {
+                                setState(() {
+                                  _languageSuffix = value!;
+                                });
+                              }),
+                              divMargin4,
                               radioWidget("zh-rTW", _languageSuffix, (value) {
                                 setState(() {
                                   _languageSuffix = value!;
