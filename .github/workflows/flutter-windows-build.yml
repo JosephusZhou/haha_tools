@@ -10,10 +10,10 @@ jobs:
     runs-on: windows-latest # 在 Windows Runner 上运行
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 # 检出你的代码
+        uses: actions/checkout@v3 # 检出你的代码
 
       - name: Setup Flutter
-        uses: flutter/setup-flutter@v1 # 安装 Flutter SDK
+        uses: subosito/flutter-action@v2 # 安装 Flutter SDK
         with:
           flutter-version: '3.7.1' # 指定你使用的 Flutter 版本，或使用 'stable'
 
@@ -21,4 +21,4 @@ jobs:
         run: flutter pub get # 获取项目依赖
 
       - name: Build Windows application
-        run: flutter build windows # 构建 Windows 应用
+        run: flutter build windows --release # 构建 Windows 应用
